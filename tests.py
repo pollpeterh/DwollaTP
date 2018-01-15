@@ -4,8 +4,8 @@ import Weather
 
 class WeatherTestCase(unittest.TestCase):
     def test_city_not_found(self):
-        with self.assertRaisesRegex(Exception, 'ERROR 404 .+'):
-            Weather.get_temperature_by_city("NOT A CITY")
+        with self.assertRaisesRegex(Exception, 'ERROR ZERO_RESULTS'):
+            Weather.get_temperature_by_city("notacity")
 
     def test_city_found(self):
         temperature = Weather.get_temperature_by_city('Des Moines')
