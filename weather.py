@@ -1,13 +1,11 @@
 import requests
-import yaml
-
-config = yaml.load(open('config.yml'))
+import os
 
 OWM_APP = 'http://api.openweathermap.org/data/2.5/weather'
 GGC_APP = 'https://maps.googleapis.com/maps/api/geocode/json'
 
-OWM_KEY = config['OWM_KEY']
-GGC_KEY = config['GGC_KEY']
+OWM_KEY = os.environ.get('OWM_KEY')
+GGC_KEY = os.environ.get('GGC_KEY')
 
 
 def get_temperature_by_location(location):
