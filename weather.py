@@ -19,7 +19,6 @@ def get_temperature_by_location(location):
             'APPID': OWM_KEY
         }
     )
-    print(response.text)
     return get_temperature(response)
 
 
