@@ -1,4 +1,5 @@
 import requests
+import json
 import os
 
 OWM_APP = 'http://api.openweathermap.org/data/2.5/weather'
@@ -18,10 +19,11 @@ def get_temperature_by_location(location):
             'APPID': OWM_KEY
         }
     )
+    print(response.text)
     return get_temperature(response)
 
 
-def get_temperature_by_city(city):
+def get_temperature_by_city(city, ggc=True):
     response = requests.get(
         OWM_APP,
         params={
@@ -30,7 +32,7 @@ def get_temperature_by_city(city):
             'APPID': OWM_KEY
         }
     )
-    if response.status_code == 404:
+    if ggc and response.status_code == 404:
         return get_temperature_by_location(get_location(city))
     return get_temperature(response)
 
@@ -43,8 +45,9 @@ def get_location(city):
             'key': GGC_KEY
         }
     )
-    status = response.json()['status']
-    results = response.json()['results']
+    obj = json.loads(response.text)
+    status = obj['status']
+    results = obj['results']
     if status == 'OK':
         global city_name
         city_name = results[0]['formatted_address']
@@ -53,11 +56,12 @@ def get_location(city):
 
 
 def get_temperature(response):
+    obj = json.loads(response.text)
     if response.status_code == 200:
-        return round(response.json()['main']['temp'])
+        return round(obj['main']['temp'])
     raise Exception('ERROR {0} {1}'.format(
             response.status_code,
-            response.json()['message']
+            obj['message']
         )
     )
 
@@ -70,3 +74,4 @@ if __name__ == '__main__':
             temperature
         )
     )
+
