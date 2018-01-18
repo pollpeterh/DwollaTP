@@ -28,7 +28,7 @@ After the user inputs a city the program checks the Open Weather Map API for tha
 ## Testing
 Run tests.py, runs isolated unit tests to test core functionality of program.
 
-*```test_get_temperature_by_city``` Tests retrieving temperature data from the Open Weather API response.
-*```test_get_temperature_by_location``` Tests retrieving temperature data from the Open Weather API response using coordinate data retrieved from the Google Geocode API.
-*```test_city_not_found``` Tests that the program handles not finding a city properly.
-*```test_location_not_found``` Tests that the program handles not finding a location properly.
+* ```test_get_temperature_by_city``` - Tests retrieving temperature data from the Open Weather API response.
+* ```test_get_temperature_by_location``` - Tests retrieving temperature data from the Open Weather API response using coordinate data retrieved from the Google Geocode API.
+* ```test_city_not_found``` - Tests that the program handles not finding a city properly.
+* ```test_location_not_found``` - Tests that the program handles not finding a location properly.
